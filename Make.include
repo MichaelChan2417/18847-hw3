@@ -1,0 +1,33 @@
+FFT_HOME = ../fftTools
+RMDA_HOME = ../RectMDArray
+LIBS_LOCAL = ../lib
+# You will need to set the FFTW_HOME variable for your system, include, and LIB_FLAGS as
+# below to find fftw. 
+FFTW_HOME = ../fftw
+
+CXX = g++
+#CFLAGS= -g
+CFLAGS = -O3
+CFLAGS += -std=c++11 -I.
+
+VPATH= . $(FFT_HOME) $(RDMA_HOME) $(LIBS_LOCAL) $(FFTW_HOME)
+
+system := $(shell uname)
+
+BLASLIBFLAGS = -lcblas
+ifeq ($(system),Darwin)
+  BLASFLAGS = -framework Accelerate -DACCELERATE_NEW_LAPACK
+endif
+
+
+osuffix:=$(DIM)D.o
+dsuffix:=$(DIM)D.d
+
+%.o: %.cpp GNUmakefile
+	$(CXX) -c $(CFLAGS) $< -o $@
+	$(CXX) -MM $(CFLAGS) $< > $*.d
+
+%$(osuffix): %.cpp GNUmakefile
+	$(CXX) -c $(CFLAGS) $< -o $@
+	$(CXX) -MM $(CFLAGS) $< > $*$(dsuffix)
+
