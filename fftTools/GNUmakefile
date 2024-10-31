@@ -6,7 +6,7 @@ include ../Make.include
 CFLAGS += -I$(FFT_HOME) -I$(RMDA_HOME) -I$(FFTW_HOME)/include -DDIM=$(DIM)
 
 
-LIB_FLAGS = -L$(LIBS_LOCAL) -L$(FFTW_HOME)/lib -lfftw3 -lfft1D
+LIB_FLAGS = -L$(LIBS_LOCAL) -L$(FFTW_HOME)/lib -lfft1D -lfftw3
 
 
 #SRCFILES:= $(wildcard $(RMDA_HOME)/*.cpp)
@@ -16,6 +16,8 @@ LIB_FLAGS = -L$(LIBS_LOCAL) -L$(FFTW_HOME)/lib -lfftw3 -lfft1D
 # Archiving tool on MACs.
 ifeq ($(system),Darwin)
   LIBTOOL = libtool -static -s -o
+else 
+  LIBTOOL = ar rcs
 endif
 
 
@@ -24,6 +26,15 @@ endif
 
 1DFFTOBJS = $(1DFFTSRC:.cpp=.o)
 
+
+# libfft3D: GNUmakefile FFTMD.o
+# 	$(LIBTOOL) libfft3D.a FFTMD.o 
+# 	mkdir -p ../lib;mv libfft3D.a $(LIBS_LOCAL);rm *.o
+
+# libfft1D:GNUmakefile $(wildcard $(FFT_HOME)/*.cpp) $(wildcard $(FFT_HOME)/*.H)
+# 	make $(1DFFTOBJS)
+# 	$(LIBTOOL) libfft1D.a $(1DFFTOBJS)
+# 	mkdir -p ../lib;mv libfft1D.a $(LIBS_LOCAL);rm *.o
 
 libfft3D: GNUmakefile FFTMD.o
 	$(LIBTOOL) libfft3D.a FFTMD.o 

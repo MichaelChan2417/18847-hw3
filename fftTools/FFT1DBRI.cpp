@@ -5,10 +5,7 @@
 #include <cmath>
 #include <complex>
 #include <cstdio>
-#include <iostream>
 #include <vector>
-
-constexpr double M_PI = 3.14159265358979323846;
 
 FFT1DBRI::FFT1DBRI(const unsigned int &a_M) : FFT1D(a_M) {
   int levelLength = 2;

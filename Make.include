@@ -17,6 +17,8 @@ system := $(shell uname)
 BLASLIBFLAGS = -lcblas
 ifeq ($(system),Darwin)
   BLASFLAGS = -framework Accelerate -DACCELERATE_NEW_LAPACK
+else 
+  BLASFLAGS = -L/usr/lib/x86_64-linux-gnu -lopenblas
 endif
 
 

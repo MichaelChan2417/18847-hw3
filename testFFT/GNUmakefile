@@ -8,7 +8,7 @@ include ../Make.include
 CFLAGS += -I$(FFT_HOME) -I$(RMDA_HOME) -I$(FFTW_HOME)/include -DDIM=$(DIM) 
 
 
-LIB_FLAGS:= -L$(LIBS_LOCAL) -L$(FFTW_HOME)/lib -lfftw3 -lfft1D
+LIB_FLAGS:= -L$(LIBS_LOCAL) -L$(FFTW_HOME)/lib -lfft1D -lfftw3
 
 
 SRCFILES:= $(wildcard $(RMDA_HOME)/*.cpp)

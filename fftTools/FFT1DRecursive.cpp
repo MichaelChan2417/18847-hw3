@@ -3,8 +3,6 @@
 #include <cassert>
 #include <cmath>
 
-constexpr double M_PI = 3.14159265358979323846;
-
 FFT1DRecursive::FFT1DRecursive(const unsigned int &a_M) : FFT1D(a_M) {
   // do you need to build any data structures to help implement this class?
 }

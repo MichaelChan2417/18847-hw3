@@ -4,9 +4,9 @@
 include ../Make.include
 
 naive.exe: benchmark.cpp dgemm-naive.cpp GNUmakefile
-	$(CXX) $(CFLAGS) $(BLASFLAGS) -o naive.exe benchmark.cpp dgemm-naive.cpp 
+	$(CXX) $(CFLAGS) -o naive.exe benchmark.cpp dgemm-naive.cpp $(BLASFLAGS) 
 blas.exe: benchmark.cpp dgemm-blas.cpp GNUmakefile
-	$(CXX) $(CFLAGS) $(BLASFLAGS) -o blas.exe benchmark.cpp dgemm-blas.cpp 
+	$(CXX) $(CFLAGS) -o blas.exe benchmark.cpp dgemm-blas.cpp $(BLASFLAGS)
 
 clean:
 	rm -rf *.o *.exe *.d *.dSYM
